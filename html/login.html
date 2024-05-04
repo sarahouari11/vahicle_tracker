@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Fugaz+One&family=Lilita+One&family=Patrick+Hand&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Fugaz+One&family=Lilita+One&family=Patrick+Hand&family=Russo+One&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Fugaz+One&family=Lilita+One&family=Patrick+Hand&family=Quicksand:wght@300..700&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="title"><h1>Welcome to<p>Trackify<span>ME</span></p></h1></div>
+<div class="wrapper">
+    
+    <form id="loginForm">
+        <h1>Login</h1>
+        <div class="input-box">
+            <input type="text" id="loginUsername" class="input" placeholder="Username" required>
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" id="loginPassword" class="input" placeholder="password" required>
+            <i class='bx bx-lock'></i>
+        </div>
+        <div class="remember-me">
+            <label> <input type="checkbox" name="remember" id="remember">Remember me</label>
+            <a class="forgot" href="#forgot" onclick="showForgotPassword()">Forgot password?</a>
+        </div>
+        <div class="loader" id="loader" style="display: none;"></div>
+        <button class="btn" onclick="login(event)">Login</button>
+        <div class="register">
+            <p>Don't have an account?<a href="#" onclick="ShowRegister()">Register</a></p>
+        </div>
+    </form>
+    <form id="registerForm" style="display: none;">
+        <h1>Register</h1>
+        <div class="input-box">
+            <input type="text" id="fullname" class="input" placeholder="Full name" required>
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="email" id="email" class="input" placeholder="enter your email" required>
+            <i class='bx bx-envelope'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" id="registerPassword" class="input" placeholder="Enter a password" required>
+            <i class='bx bx-lock'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" id="confirmpassword" class="input" placeholder="confirm password" required>
+            <i class='bx bxs-check-shield'></i>
+            <p id="confirm" style="font-size: 10px; margin: 10px; color: red;display: none;">Password does not match</p>
+        </div>
+        <div class="input-box">
+            <input type="text" id="carid" class="input" placeholder="enter your car id" required maxlength="10" minlength="10">
+            <i class='bx bxs-car-garage'></i>
+        </div>
+        <div class="remember-me">
+            <label> <input type="checkbox" name="remember" id="remember">Remember me</label>
+        </div>
+        <div id="loader" style="display: none;">
+            Loading...
+        </div>
+        <p id="successMessage" style="display: none;">Registration successful!</p>
+        <button class="btn" onclick="check()">Sign up</button>
+        <div class="register">
+            <p>Already have an account?<a href="#" onclick="ShowLogin()">Log in</a></p>
+        </div>
+    </form>
+ <form>   <!-- Add the Forgot Password section with display: none -->
+<div id="forgotPassword" style="display: none;">
+    <h1>Forgot Password</h1>
+    <div class="input-box">
+        <input type="email" id="forgotEmail" class="input" placeholder="Enter your email" required>
+        <i class='bx bx-envelope'></i>
+    </div>
+    <div class="loader" id="forgotLoader" style="display: none;"></div>
+    <!-- Add a message container -->
+<div id="resetMessage" style="display: none;">
+    <p style="text-align: center;">a reset link has been sent to  <span id="resetEmail"></span>. <br> Check your email inbox.</p>
+</div>
+
+    <button class="btn" onclick="sendResetLink(event)">Send Reset Link</button>
+    <div class="register">
+        <p>Remember your password? <a href="#" onclick="ShowLogin()">Login</a></p>
+    </div>
+</div>
+</form>
+</div>
+<div>
+    <footer>&copyTrackifyME 2024</footer>
+</div>
+
+<script src="../js/login.js"></script>
+
+
+</body>
+</html>

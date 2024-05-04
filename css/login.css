@@ -1,0 +1,303 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+     color: black;
+    
+
+}
+footer{
+    margin-top: 100px;
+}
+.title{
+    font-size: 26px;
+}
+.title h1{
+    font-weight:bolder;
+    font-family: Quicksand;
+}
+.title p{
+    font-family: "Fugaz One", sans-serif;
+      font-weight: 400;
+      font-style: normal; 
+      display: inline-block; 
+      margin-left: 10px;
+}
+.title{
+margin-top: 100px;
+text-wrap: nowrap;
+}
+.title p span{
+    color:#f3b252;
+       font-weight: 700;}
+    
+body{
+    background-image: linear-gradient(to top right, #606c38ff , #283618ff, #fefae0ff, #dda15eff, #bc6c25ff);
+    background-size: 400% 400%; /* Adjust the size as needed */
+    animation: gradientAnimation 30s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+#resetMessage p{
+    font-size: 15px;
+    
+}
+
+.wrapper{
+    width: 420px;
+    height: fit-content;
+    background:transparent;
+    border: 2px  solid rgba(37, 4, 4, 0.16);
+    box-shadow: 0 0 10px black;
+    backdrop-filter: blur(10px);
+    padding: 30px 40px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: #0b0101;
+    height: fit-content;
+
+}
+.wrapper h1{
+    text-align: center;
+    font-size: 40px;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 700;
+    
+     font-style: normal;
+
+}
+.wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    color: black;
+    
+
+}
+.forgot{
+    color: black;}
+.input-box .input{
+    background: transparent;
+    border:none;
+    width: 100%;
+    height:100% ;
+    outline: none;
+    border: 2px solid rgb(18, 3, 3);
+    box-shadow: 0 0 5px black;
+   border-radius: 40px;
+   color: #130404;
+   padding: 20px 45px 20px 20px;
+   font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.wrapper .remember-me{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+
+}
+
+
+.remember-me a{
+    text-decoration: none;
+    color: #0c0202;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.remember-me a:hover{
+    text-decoration: underline;
+}
+.wrapper .btn{
+    width: 100%;
+    background: #1c0303;
+    border-radius:40px;
+    height: 45px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.wrapper .register{
+margin-top: 40px;
+margin-bottom: 40px;
+text-align: center;
+}
+#registerForm{
+    height: fit-content;
+}
+.wrapper .register p a{
+    text-decoration: none;
+    color: #180202;
+    font-weight: 600;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.wrapper .register p a:hover{
+    text-decoration: underline;
+}
+.loader{
+    border: 4px solid white;
+    border-radius: 50%;
+    border-top: 4px solid rgb(153, 24, 106);
+    width: 20px;
+    height: 20px;
+    animation: spin 5s linear infinite;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@keyframes spin {
+    0%{ transform :rotate(0deg);}
+    100%{transform:rotate(360deg);}
+    
+}
+#registerForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height:fit-content;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+    
+
+}
+
+.wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    
+
+}
+.input-box .input{
+    background: transparent;
+    border:none;
+    width: 100%;
+    height:100% ;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 2);
+   border-radius: 40px;
+   color: #160303;
+   padding: 20px 45px 20px 20px;
+   font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.input-box .input::placeholder{
+    color: #130101;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 600;
+     font-style: normal;
+}
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.wrapper .remember-me{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+
+}
+.remember-me a{
+    text-decoration: none;
+    color: #0b0000;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.remember-me a:hover{
+    text-decoration: underline;
+}
+.wrapper .btn{
+    width: 100%;
+    background: #5a414161;
+    border-radius:40px;
+    height: 45px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.wrapper .register{
+margin-top: 20px;
+
+text-align: center;
+}
+.wrapper .register p a{
+    text-decoration: none;
+    color: #170404;
+    font-weight: 600;
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+     font-style: normal;
+}
+.wrapper .register p a:hover{
+    text-decoration: underline;
+}
+
+#registerForm{
+    display: none;
+}
