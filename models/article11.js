@@ -11,7 +11,8 @@ const articleSchemaa=new Schema({
    GoogleMapslocation :String,
    Speed:Number,
    Heading :Number,
-   Altitude:String
+   Altitude:String,
+   carid :Number
  
 })
 const Article11=mongoose.model("Article11",articleSchemaa)

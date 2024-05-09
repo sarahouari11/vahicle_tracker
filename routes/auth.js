@@ -126,4 +126,32 @@ router.post('/logout', (req, res) => {
 });
 
 
+// Route for forgot password
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Find user by email
+    const existingUser = await user.findOne({ email });
+    if (!existingUser) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
+    // Generate a unique token
+    const resetToken = uuidv4();
+
+    // Save the reset token in the database
+    existingUser.resetPasswordToken = resetToken;
+    await existingUser.save();
+
+    // Send email with reset link
+    // You'll need to implement the logic to send an email with the reset link
+
+    res.status(200).send({ message: 'Reset password link sent successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Failed to send reset password link' });
+  }
+});
+
 module.exports = router;

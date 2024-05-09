@@ -8,20 +8,23 @@ const Article11 = require("./models/article11.js");
 const authRoutes = require('./routes/auth');
 const updateRoutes= require('./routes/update');
 const affichageRoutes =require('./routes/affichage');
+app.use(express.static('nvpublic/PROJET'));
+
 app.use(express.json());
 // Utilisation des routes
 app.use('/api/auth', authRoutes);
 app.use('/api/update',updateRoutes);
-app.use('/api/affichage',affichageRoutes);
+app.use('/api/affichage',affichageRoutes); 
 mongoose.connect("mongodb+srv://sara:sara123@firstdatabases.hiellyx.mongodb.net/all-data?retryWrites=true&w=majority&appName=firstdatabases", {
     useNewUrlParser: true,
-    useUnifiedTopology: true 
+    useUnifiedTopology: true     
 })
 
     .then(() => {
         console.log("Connected to MongoDB"); 
         app.listen(3000, () => {
             console.log("Server is running on port 3000");
+            
         })
     })
     .catch((error) => { // Fixed typo here
@@ -31,9 +34,9 @@ mongoose.connect("mongodb+srv://sara:sara123@firstdatabases.hiellyx.mongodb.net/
 
 
 
-app.get("/hi", (req, res) => {
-    res.sendFile(__dirname + "/views/index.ejs"); 
-   
+app.get("/login", (req, res) => {
+    res.sendFile(__dirname + "/nvpublic/PROJET/html/index.html"); 
+ 
 });
 
 
@@ -69,6 +72,7 @@ app.post('/data', async (req, res) => {
         newSensorData. Speed=req.body.Speed;
         newSensorData. Heading= req.body.Heading;
         newSensorData.Altitude= req.body.Altitude;  
+        newSensorData.carid= req.body.carid;  
        
         
         // Save the sensor data to MongoDB
@@ -81,4 +85,49 @@ app.post('/data', async (req, res) => {
         res.status(500).send('Internal Server Error');  
     }
     
+});app.get('/api/data', async (req, res) => { 
+    
+const carid=7891;
+    try {
+        // Find data by carid
+        const sensorData = await Article11.find({ carid });
+
+        // If data is found, send it as response
+        if (sensorData) {
+            res.status(200).json(sensorData);
+           
+            
+        } else {
+            res.status(404).json({ message: 'Data not found for the given carid' });
+        }
+    } catch (error) {
+        console.error('Error fetching data by carid:', error);
+        res.status(500).send('Internal Server Error');}
+     
 });
+app.get('/api/data/h/:carid', async (req, res) => {
+    const { carid } = req.params;
+
+    try {
+        // Find data by carid
+        const sensorData = await Article11.find({ carid });
+
+        // If data is found, send it as response
+        if (sensorData && sensorData.length > 0) {
+            // Extract headings from sensorData array
+            const headings = sensorData.map(data => data.Heading);
+            const altitudes = sensorData.map(data => data.Altitude);
+
+            // Send headings as response
+            res.status(200).json({ headings,altitudes });
+           
+        } else {
+            res.status(404).json({ message: 'Data not found for the given carid' });
+        }
+    } catch (error) {
+        console.error('Error fetching data by carid:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+    
