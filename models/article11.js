@@ -12,7 +12,7 @@ const articleSchemaa=new Schema({
    Speed:Number,
    Heading :Number,
    Altitude:String,
-   carid :Number
+   idcar :Number
  
 })
 const Article11=mongoose.model("Article11",articleSchemaa)

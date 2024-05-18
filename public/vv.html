@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Information</h1>
+        <table id="vehicleTable">
+            <thead>
+                <tr>
+                    <th>Vehicle ID</th>
+                    <th>registraion</th>
+                    <th>Model</th>
+                    <th>idcar</th>
+                    <!-- Add more table headers as needed -->
+                </tr>
+            </thead>
+            <tbody id="vehicleTableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        // JavaScript code to fetch and display vehicle information
+        async function displayVehicleInfo() {
+            const url = 'http://localhost:3000/api/affichage/vehicles';
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId:123 }) // Replace 'userId_value' with the actual user ID
+                });
+                const data = await response.json();
+                
+                const vehicleTableBody = document.getElementById('vehicleTableBody');
+                if (data.vehicles && data.vehicles.length > 0) {
+                    data.vehicles.forEach(vehicle => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${vehicle._id}</td>
+                            <td>${vehicle.registration}</td>
+                            <td>${vehicle.model}</td>
+                            <td>${vehicle.idcar}</td>
+                            <!-- Add more table data cells as needed -->
+                        `;
+                        vehicleTableBody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="3">No vehicles found</td>';
+                    vehicleTableBody.appendChild(row);
+                }
+            } catch (error) {
+                console.error('Error fetching vehicle information:', error);
+            }
+        }
+
+        // Call the function to display vehicle information when the page loads
+        window.onload = displayVehicleInfo;
+    </script>
+</body>
+</html>

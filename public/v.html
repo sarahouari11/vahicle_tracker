@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        #vehicleInfo {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Information</h1>
+        <div id="vehicleInfo"></div>
+    </div>
+    
+    <script>
+        // JavaScript code to fetch and display vehicle information
+        async function displayVehicleInfo() {
+            const url = 'http://localhost:3000/api/affichage/vehicles';
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId: 123}) // Replace 'userId_value' with the actual user ID
+                });
+                const data = await response.json();
+                
+                if (data.vehicles && data.vehicles.length > 0) {
+                    const firstVehicle = data.vehicles[0];
+                    const vehicleInfoDiv = document.getElementById('vehicleInfo');
+                    vehicleInfoDiv.innerHTML = `
+                        <p>Vehicle ID: ${firstVehicle._id}</p>
+                        <p>registration: ${firstVehicle.registration} </p>
+                        <p>Model: ${firstVehicle.model}</p>
+                        <p>idcar: ${firstVehicle.idcar}</p>
+                        <!-- Add more properties as needed -->
+                    `;
+                } else {
+                    const vehicleInfoDiv = document.getElementById('vehicleInfo');
+                    vehicleInfoDiv.innerHTML = '<p>No vehicles found</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching vehicle information:', error);
+            }
+        }
+
+        // Call the function to display vehicle information when the page loads
+        window.onload = displayVehicleInfo;
+    </script>
+</body>
+</html>

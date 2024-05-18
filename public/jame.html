@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <forme>
+    <input type="text" id="input" input/>
+    <button id="get">GET</button>
+    <button id="post">POST</button>
+</forme>
+<script>
+    const getbtn=document.getElementById('get')
+    const postbtn=document.getElementById('post')
+    const input=document.getElementById('input')
+    const url='http://localhost:3000'
+getbtn.addEventListener('click', getInfo)
+postbtn.addEventListener('click', postInfo)
+
+    async function getInfo (e) {
+        e.preventDefault()
+        const res= await fetch(url+'/api/affichage/userr',{
+            method: 'GET'
+
+        })
+        const data = await response.json(); 
+        const firstVehicle = data.useR[0];
+        input.value= firstVehicle.fullName;
+        console.log(res) 
+
+    }
+
+
+    async function postInfo (e) {
+        e.preventDefault()
+        if (input==""){ return }
+      
+        const res= await fetch(url,{
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data:input.value})
+        })
+       
+        
+     
+
+        
+
+}
+   
+</script>
+</body>
+</html>

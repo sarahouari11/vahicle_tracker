@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth');
 const updateRoutes= require('./routes/update');
 const affichageRoutes =require('./routes/affichage');
 app.use(express.static('nvpublic/PROJET'));
+app.use(express.static('public'))
 
 app.use(express.json());
 // Utilisation des routes
@@ -28,25 +29,40 @@ mongoose.connect("mongodb+srv://sara:sara123@firstdatabases.hiellyx.mongodb.net/
         })
     })
     .catch((error) => { // Fixed typo here
-        console.error("Error connecting to MongoDB:", error);
+        console.error("Error connecting to MongoDB:", error); 
     });
  
 
 
 
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/nvpublic/PROJET/html/index.html"); 
  
+});
+//this endpoint just for testing
+app.get("/k", (req, res) => {
+    res.sendFile(__dirname + "/nvpublic/PROJET/html/vehicules.html"); });
+app.get("/login.html", (req, res) => {
+    res.sendFile(__dirname + "/nvpublic/PROJET/html/login.html"); 
+ 
+});
+app.get("/lo", (req, res) => {
+    res.sendFile(__dirname + "/nvpublic/PROJET/html/forgot.html"); 
+ 
+});
+app.get("/h", (req, res) => {
+    res.sendFile(__dirname + "/public/vv.html"); 
+  
 });
 
 
 
-// Endpoint to receive data from Arduino and store in MongoDB
+// Endpoint to receive data from Arduino  and store in MongoDB
 app.post('/data', async (req, res) => {
     
     
     try {
-        
+         
         const { sensorData1, sensorData2, sensorData3, sensorData4, sensorData5, sensorData6, sensorData7, sensorData8, sensorData9, sensorData10 } = req.body;
         console.log('Received data from Arduino:');
         console.log('Sensor Data 1:', req.body.Time);
@@ -72,7 +88,7 @@ app.post('/data', async (req, res) => {
         newSensorData. Speed=req.body.Speed;
         newSensorData. Heading= req.body.Heading;
         newSensorData.Altitude= req.body.Altitude;  
-        newSensorData.carid= req.body.carid;  
+        newSensorData.idcar= req.body.idcar;  
        
         
         // Save the sensor data to MongoDB
@@ -87,10 +103,10 @@ app.post('/data', async (req, res) => {
     
 });app.get('/api/data', async (req, res) => { 
     
-const carid=7891;
+const idcar=req.body;
     try {
         // Find data by carid
-        const sensorData = await Article11.find({ carid });
+        const sensorData = await Article11.find({ idcar });
 
         // If data is found, send it as response
         if (sensorData) {
@@ -105,12 +121,12 @@ const carid=7891;
         res.status(500).send('Internal Server Error');}
      
 });
-app.get('/api/data/h/:carid', async (req, res) => {
-    const { carid } = req.params;
+app.get('/api/data/h', async (req, res) => {
+    const { idcar } = req.body;
 
     try {
         // Find data by carid
-        const sensorData = await Article11.find({ carid });
+        const sensorData = await Article11.find({ idcar});
 
         // If data is found, send it as response
         if (sensorData && sensorData.length > 0) {
@@ -119,7 +135,7 @@ app.get('/api/data/h/:carid', async (req, res) => {
             const altitudes = sensorData.map(data => data.Altitude);
 
             // Send headings as response
-            res.status(200).json({ headings,altitudes });
+            res.status(200).json({ headings,altitudes }); 
            
         } else {
             res.status(404).json({ message: 'Data not found for the given carid' });
