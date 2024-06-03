@@ -13,7 +13,7 @@ router.post('/vehicles', async (req, res) => {
         console.error('Error retrieving vehicles:', err);
         res.status(500).json({ error: 'Failed to retrieve vehicles' });
     }
-}); 
+});  
 // pour le affichage des info sur utilisatteur
 router.get('/userr',async (req,res)=>{
     try {

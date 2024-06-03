@@ -243,16 +243,16 @@ router.get('/reset_password/:userId/:token', async (req, res) => {
     const secret = "sara123" + existingUser.password;
     try {
       jwt.verify(token, secret);
-      res.render("../nvpublic/PROJET/html/reset.ejs", { userId: userId, token: token });
+      res.render("../nvpublic/PROJET/html/reset4.ejs", { userId: userId, token: token });
     } catch (error) {
       console.error(error);
       return res.status(400).send({ message: 'Invalid or expired token' });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: 'Internal Server Error' });
+    res.status(500).send({ message: 'Internal Server Error' }); 
   }
-});
+});   
 //endpoint for post the new password and save it to database
 router.post('/reset_password/:userId/:token', async (req, res) => {
   try {

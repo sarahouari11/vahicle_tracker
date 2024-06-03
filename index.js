@@ -63,13 +63,11 @@ app.post('/data', async (req, res) => {
     
     try {
          
-        const { sensorData1, sensorData2, sensorData3, sensorData4, sensorData5, sensorData6, sensorData7, sensorData8, sensorData9, sensorData10 } = req.body;
+        const { sensorData1, sensorData2, sensorData6, sensorData7, sensorData8, sensorData9, sensorData10 } = req.body;
         console.log('Received data from Arduino:');
         console.log('Sensor Data 1:', req.body.Time);
         console.log('Sensor Data 2:', req.body.Date);
-        console.log('Sensor Data 3:', req.body.Fix);
-        console.log('Sensor Data 4:', req.body.Satellites);
-        console.log('Sensor Data 5:', req.body.quality); 
+       
         console.log('Sensor Data 6:',req.body.Location);
         console.log('Sensor Data 7:',req.body.GoogleMapslocation );
         console.log('Sensor Data 8:', req.body.Speed);
@@ -80,9 +78,7 @@ app.post('/data', async (req, res) => {
         const newSensorData = new Article11();
         newSensorData.Time= req.body.Time;
         newSensorData.Date= req.body.Date;
-        newSensorData.Fix= req.body.Fix;
-        newSensorData. Satellites=req.body.Satellites ;
-        newSensorData.quality=req.body.quality;
+        
         newSensorData.Location=req.body.Location;
         newSensorData. GoogleMapslocation=req.body.GoogleMapslocation ;
         newSensorData. Speed=req.body.Speed;
